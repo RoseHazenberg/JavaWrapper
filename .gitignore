@@ -1,14 +1,24 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Gradle template
 .gradle
 /build/
+/.idea
+/gradle
+gradlew
+gradlew.bat
+CLIdemo.iml
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Compiled class file
+*.class
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Log file
+*.log
 
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+radle/wrapper/gradle-wrapper.properties
