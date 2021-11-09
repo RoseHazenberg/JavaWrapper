@@ -6,7 +6,6 @@
 /gradle
 gradlew
 gradlew.bat
-CLIdemo.iml
 
 # Compiled class file
 *.class
@@ -21,4 +20,3 @@ CLIdemo.iml
 *.zip
 *.tar.gz
 *.rar
-radle/wrapper/gradle-wrapper.properties
