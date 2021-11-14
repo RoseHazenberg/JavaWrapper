@@ -1,0 +1,21 @@
+@relation unknown
+
+@attribute ID numeric
+@attribute clump_thickness numeric
+@attribute uniformity_of_cell_size numeric
+@attribute uniformity_of_cell_shape numeric
+@attribute marginal_adhesion numeric
+@attribute single_epithelial_cell_size numeric
+@attribute bare_nuclei numeric
+@attribute bland_chromatin numeric
+@attribute normal_nucleoli numeric
+@attribute mitoses numeric
+@attribute class {Benign,Malignant}
+
+@data
+1496472,8,10,10,8,7,10,9,7,8,?
+1903842,10,10,1,1,2,10,3,1,8,?
+8900211,2,1,2,1,2,1,3,1,8,?
+5405401,2,1,1,1,2,1,2,1,8,?
+4013729,1,10,10,1,1,1,1,1,8,?
+4013729,1,10,10,1,10,1,1,1,8,?
