@@ -9,17 +9,31 @@ package nl.bioinf.wrapper;
 
 import org.apache.commons.cli.*;
 
+/**
+ * This class adds the options which needed to be fetched from the command line.
+ * Fetch for the command line and check if the options are indeed provided.
+ */
+
 public class GiveOptionsGetter implements GiveOptions {
     private Options options;
     private CommandLine cmd;
     private String arffFile;
     private String unknownFile;
 
+    /**
+     * Create and parse the arguments.
+     * @param args from the command line
+     */
     public GiveOptionsGetter(String [] args) {
         createOptions();
         parseCommandArgs(args);
    }
 
+    /**
+     * Private and doesn't return anything.
+     * Create the options to get the arff file with the known classes and
+     * to get the file with the unknown classes. And it creates a help option.
+     */
     private void createOptions() {
         try {
             this.options = new Options();
@@ -40,6 +54,10 @@ public class GiveOptionsGetter implements GiveOptions {
         }
     }
 
+    /**
+     * Gets the arguments from the command and otherwise print help.
+     * @param args command line args
+     */
     private void parseCommandArgs(String[] args) {
         CommandLineParser parser = new DefaultParser();
         try {
@@ -55,6 +73,10 @@ public class GiveOptionsGetter implements GiveOptions {
         }
     }
 
+    /**
+     * Checks if the options are provides.
+     * @throws ParseException if not files provided
+     */
    private void checkOptions() throws ParseException {
         if (cmd.hasOption('f')) {
             this.arffFile = cmd.getOptionValue('f');
@@ -68,17 +90,27 @@ public class GiveOptionsGetter implements GiveOptions {
        }
    }
 
+    /**
+     * Creates the help if prints it is necessary in the parseCommandArgs.
+     */
     private void printHelp() {
         HelpFormatter formatter = new HelpFormatter();
-        // TODO name file
-        formatter.printHelp("java -jar .jar [options]", options);
+        formatter.printHelp("java -jar Wrapper-1.0-SNAPSHOT-all.jar [options]", options);
     }
 
+    /**
+     * Override method for getFileName.
+     * @return arffFile
+     */
     @Override
     public String getFileName() {
         return arffFile;
     }
 
+    /**
+     * Override method for getUnknownFile
+     * @return unknownFile
+     */
     @Override
     public String getUnknownFile() {
         return unknownFile;

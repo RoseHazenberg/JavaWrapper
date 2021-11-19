@@ -10,46 +10,61 @@ package nl.bioinf.wrapper;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 
+/**
+ * Public class which classifies the unknown classes of the instances.
+ * Everything is protected ,so it can be used with the class in the package.
+ */
+
 public class ClassifyInstances {
+    /**
+     * String of model file name which is final, cannot be altered.
+     * Is protected which can be used throughout the package.
+     */
     protected final String randomForestModelFile = "data/randomforest.model";
 
+    /**
+     * Classifies the new instances with the RandomForest tree.
+     * @param tree RandomForest tree which is build
+     * @param test unknown instances
+     * @throws Exception when it doesn't work
+     */
     protected void classifyUnknownInstances(RandomForest tree, Instances test) throws Exception {
-        Instances labeled = new Instances(test);
+        Instances predicted = new Instances(test);
         for (int i = 0; i < test.numInstances(); i++) {
-            double label = tree.classifyInstance(test.instance(i));
-            labeled.instance(i).setClassValue(label);
+            double pred = tree.classifyInstance(test.instance(i));
+            predicted.instance(i).setClassValue(pred);
+            System.out.println("ID: " + test.instance(i).value(0) + ", predicted: "
+                    + test.classAttribute().value((int) pred));
         }
-        System.out.println("\nNew labeled = \n" + labeled);
     }
 
+    /**
+     * Reads the classifier from the model file.
+     * @return RandomForest model
+     * @throws Exception is failed to load
+     */
     protected RandomForest loadClassifier() throws Exception {
         return (RandomForest) weka.core.SerializationHelper.read(randomForestModelFile);
     }
 
+    /**
+     * Writes the classifier with model file.
+     * @param randomForest RandomForest tree
+     * @throws Exception if something went wrong
+     */
     protected void saveClassifier(RandomForest randomForest) throws Exception {
         weka.core.SerializationHelper.write(randomForestModelFile, randomForest);
     }
 
+    /**
+     * Build the RandomForest tree.
+     * @param test the arff file with known classes
+     * @return build tree
+     * @throws Exception if the building doesn't work
+     */
     protected RandomForest buildTree(Instances test) throws Exception {
         RandomForest tree = new RandomForest();
         tree.buildClassifier(test);
         return tree;
     }
-
-//    protected void printInstances(Instances instances) {
-//        int numAttributes = instances.numAttributes();
-//
-//        for (int i = 0; i < numAttributes; i++) {
-//            System.out.println("attribute " + i + " = " + instances.attribute(i));
-//        }
-//
-//        System.out.println("class index = " + instances.classIndex());
-//
-//        int numInstances = instances.numInstances();
-//        for (int i = 0; i < numInstances; i++) {
-//            if (i == 5) break;
-//            Instance instance = instances.instance(i);
-//            System.out.println("instance = " + instance);
-//        }
-//    }
 }

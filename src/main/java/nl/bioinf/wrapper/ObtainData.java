@@ -21,12 +21,13 @@ public class ObtainData {
     /**
      * Is protected, so it can only be used by files of the same package.
      * This removed the 10 attribute from the unknown arff file which isn't needed.
-     * @param datafile
+     * @param datafile arff file with unknown classes to remove attribute
      * @return filteredData
-     * @throws Exception
+     * @throws Exception if it doesn't work to remove column 10
      */
     protected Instances removeAttribute(Instances datafile) throws Exception {
         Remove remove = new Remove();
+        // removes attribute number 10 which is mitoses
         remove.setAttributeIndices(String.valueOf(10));
         remove.setInvertSelection(false);
         remove.setInputFormat(datafile);
@@ -37,9 +38,9 @@ public class ObtainData {
     /**
      * Is protected, so it can only be used in files from the same package.
      * Reads both files and load the instances.
-     * @param datafile
+     * @param datafile arff file with known and unknown classes
      * @return data
-     * @throws IOException
+     * @throws IOException is failed to load
      */
     protected Instances loadFromArffFile(String datafile) throws IOException {
         try {

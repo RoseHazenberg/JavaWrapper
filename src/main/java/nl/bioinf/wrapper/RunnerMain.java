@@ -10,8 +10,14 @@ package nl.bioinf.wrapper;
 import weka.core.Instances;
 import weka.classifiers.trees.RandomForest;
 
+/**
+ * This class is the main which gets the arguments and classifies the new instances. Set everything to work.
+ */
 
 public class RunnerMain {
+    /**
+     * @param args from the command line
+     */
     public static void main(String[] args) {
         GiveOptions giveOptions = new GiveOptionsGetter(args);
         ArgsGetter argsGetter = new ArgsGetter();
