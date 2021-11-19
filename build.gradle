@@ -1,4 +1,12 @@
+/*
+ * Copyright (c) 2021. Rose Hazenberg
+ * Licensed under GPLv3. See gpl.md
+ *
+ *
+ */
+
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'java'
 }
 
@@ -16,8 +24,8 @@ dependencies {
     // https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-stable
     implementation group: 'nz.ac.waikato.cms.weka', name: 'weka-stable', version: '3.8.5'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
@@ -26,6 +34,12 @@ test {
 
 jar {
     manifest {
-        attributes "Main-Class": "nl.bioinf.wrapper.CliOptionsProviderMain"
+        attributes "Main-Class" : "nl.bioinf.wrapper.CliOptionsProviderMain"
+    }
+}
+
+shadowJar {
+    manifest {
+        attributes "Main-Class" : "nl.bioinf.wrapper.CliOptionsProviderMain"
     }
 }
